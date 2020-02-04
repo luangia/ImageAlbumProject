@@ -3,7 +3,6 @@ const router = require("express").Router();
 const multer = require('multer');
 const path = require('path');
 
-console.log("hey");
 // SET STORAGE
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -17,7 +16,6 @@ var storage = multer.diskStorage({
 // set upload object to store pictures to correct location
 var upload = multer({ storage: storage })
 
-console.log("hey");
 //Upload an image and store it in a database
 router.post("/upload", upload.single("photo"), function(req, res) {
     
@@ -27,7 +25,6 @@ router.post("/upload", upload.single("photo"), function(req, res) {
         album: req.body.album,
         upload_date: new Date()
     });
-    console.log("hey");
 
     image.save(function(err, image) {
         if (err) {
@@ -41,7 +38,6 @@ router.post("/upload", upload.single("photo"), function(req, res) {
 
 //Retrieve all images from the database
 router.get("/getImages", function(req, res) {
-    console.log("hey");
     Image.find(function(err, images) {
         if (err) {
             res.status(400).send(err);

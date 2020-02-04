@@ -1,5 +1,5 @@
 // models/image.js
-var db = require("../db");
+const db = require("../db");
 
 var Image = db.model("Image", {
     filename:  String,

@@ -17,8 +17,11 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 //Upload an image and store it in a database
-router.post("/upload", upload.single("photo"), function(req, res) {
-    
+router.post("/", upload.single("photo"), function(req, res) {
+    if (req.file) {
+        console.log("File: " + req.body.photoName + " saved on.");
+    } else throw 'error';
+
     var image = new Image({
         filename: req.file.filename,
         photo_name: req.body.photoName,
@@ -37,7 +40,7 @@ router.post("/upload", upload.single("photo"), function(req, res) {
 
 
 //Retrieve all images from the database
-router.get("/getImages", function(req, res) {
+router.get("/", function(req, res) {
     Image.find(function(err, images) {
         if (err) {
             res.status(400).send(err);

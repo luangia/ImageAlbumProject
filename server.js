@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var router = express.Router();
 
 router.use(bodyParser.json());
-router.use("/", require("./api/images"));
+router.use("/api/images", require("./api/images"));
 
 app.use(router);
 

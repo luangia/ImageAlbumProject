@@ -1,6 +1,6 @@
 $(function(){
     // load the image information from the database
-    $.get('/getImages',(data)=>{
+    $.get('/api/images',(data)=>{
         let html = '';
         //build a card for each image
         for (var i=0; i<data.length; i++) {

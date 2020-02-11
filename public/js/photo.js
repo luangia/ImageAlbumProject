@@ -12,6 +12,8 @@ $(function(){
                     data[i].photo_name + '</h5>\n' +
                     '<p class="card-text">Album: ' +
                     data[i].album + '</p>\n' +
+                    '<p class="card-text">Description: ' +
+                    data[i].description + '</p>\n' +
                 '</div>\n</div>'; 
         }
         $('#imageArea').html(html);

@@ -21,19 +21,8 @@
 
 <div class="container">
     <div class="card border-success mt-5">
-        <h1 class="card-header">Upload Image</h1>
-        <div class="card-body">
-            <div class="form-group">
-                <form action="/api/images" method="post" enctype="multipart/form-data">
-                    <input class="form-control-file" type="file" accept="image/*" name="photo" >
-                    <label for="photoName">Photo Name: </label>
-                    <input class="form-control" type="text" name="photoName" id="photoName" >
-                    <label for="subject">Photo Album: </label>
-                    <input class="form-control" type="text" name="album" id="album" >
-                    <input class="btn mt-3" type="submit" value="upload">
-                </form>
-            </div>
-        </div>
+        <button class="btn mt-3" onclick="window.location.href = 'upload.html'">Upload</button>
+        <button class="btn mt-3" onclick="window.location.href = 'home.html' ">Get All Images</button>
     </div>
 </div>
 

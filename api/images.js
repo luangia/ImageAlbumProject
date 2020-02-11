@@ -22,10 +22,17 @@ router.post("/", upload.single("photo"), function(req, res) {
         console.log("File: " + req.body.photoName + " saved on.");
     } else throw 'error';
 
+    //create new image to save in the database
     var image = new Image({
         filename: req.file.filename,
         photo_name: req.body.photoName,
         album: req.body.album,
+        description: req.body.description,
+        fstop: req.body.fstop,
+        sspeed: req.body.sspeed,
+        iso: req.body.iso,
+        focalLength: req.body.focalLength,
+        cameraType: req.body.cameraType,
         upload_date: new Date()
     });
 
@@ -33,6 +40,7 @@ router.post("/", upload.single("photo"), function(req, res) {
         if (err) {
             res.status(400).send(err);
         } else {
+
             res.redirect("/home.html");
         }
     });

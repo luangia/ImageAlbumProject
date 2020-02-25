@@ -2,19 +2,22 @@ const jwt = require("jwt-simple");
 const User = require("../models/user");
 const router = require("express").Router();
 const bcrypt = require("bcrypt-nodejs");
+const bodyParser = require("body-parser");
+
+const config = require("../configuration/config");
+const secret = config.secret;
+
+router.use(bodyParser.json())
 
 const errMessage = "Invalid ID or Password";
 
 
-//PLEASE PUT THIS INTO THE CONFIG FILE, THIS IS NOT SAFE!!!
-const secret = "supersecret";
-
 // Add a new user to the database
 router.post("/user", function (req, res) {
     //hashing the password
-    console.log(req.body);
+
     bcrypt.hash(req.body.password, null, null, function(err, hash) {
-        console.log(req.body.uid);
+        
         var new_user = new User({
             uid: req.body.uid,
             password: hash,
@@ -24,6 +27,7 @@ router.post("/user", function (req, res) {
 
         User.findOne({ uid: new_user.uid }, function (err, user) {
             if (user) {
+                console.log("Duplicate check - Duplicate user found: " + req.body.uid);
                 res.status(409).send("ID's taken.");
             } 
     
@@ -34,6 +38,11 @@ router.post("/user", function (req, res) {
             
             //If ID is not taken and is valid
             else {
+                console.log("-----USER CREATED----- ")
+                console.log("User: " + req.body.uid);
+                console.log("Password: " + req.body.password);
+                console.log("Full Name: " + req.body.full_name);
+
                 new_user.save(function (err, new_user) {
                     if (err) {
                         res.status(400).send(err);

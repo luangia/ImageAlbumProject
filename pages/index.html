@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
     <script type="text/javascript" src="js/login.js" defer></script>
     <script type="text/javascript" src="js/auth.js" defer></script>
 </head>
@@ -22,27 +23,23 @@
     <div class="container">
         <div class="card border-success mt-5">
             <h1 class="card-header">Welcome to the Image Album Project</h1>
-            <div class="justify-content-center text-align">
-                <button type="button" class="btn btn-lg btn-secondary" onclick="window.location.href = 'upload.html'">Upload</button>
-                <button type="button" class="btn btn-lg btn-secondary" onclick="window.location.href = 'home.html' ">Get All Images</button>
-            </div>
 
             <a href='signup.html' style="text-align: left;">Don't have an account?</a>
 
             <!-- Button to open the modal login form -->
             <a href="javascript:; " onclick="document.getElementById( 'login_form').style.display='block' ">Login</a>
-            <div id="login_form " class="modal ">
+            <div id="login_form" class="modal">
                 <!--Modal Content-->
-                <div class="loginbox ">
-                    <img src="images/avatar.png " class="avatar ">
+                <div class="loginbox">
+                    <img src="images/avatar.png" class="avatar ">
                     <h1>Login Here</h1>
-                    <span onclick="document.getElementById( 'login_form').style.display='none' " class="close " title="Close Modal ">&times;</span>
-                    <form action="api/auth " method="post ">
+                    <span onclick="document.getElementById( 'login_form').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <form id="login_submit" action="api/auth" method="post">
                         <p>Username</p>
-                        <input type="email " name="uid " placeholder="Enter Username (Email) " required>
+                        <input type="email" id="uid" name="uid" placeholder="Enter Username (Email)" required>
                         <p>Password</p>
-                        <input type="password " name="password " placeholder="Enter Password " required>
-                        <input type="submit " value="Login " id="login_btn ">
+                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                        <input type="submit" value="Login" id="login_btn">
                         <a href="signup.html ">Don't have an account?</a>
                     </form>
 

@@ -10,7 +10,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+    <script type="text/javascript" src="js/auth.js" defer></script>
     <style>
         body {
             background: darkturquoise;
@@ -25,7 +26,7 @@
             <h1 class="card-header">Create an Account</h1>
             <div class="card-body">
                 <div class="form-group">
-                    <form action="api/user" method="post" enctype="application/x-www-form-urlencoded">
+                    <form  id="signupForm" action="api/user" method="post" enctype="application/x-www-form-urlencoded">
                         <label for="uid">User ID (Email): </label>
                         <input class="form-control" type="email" name="uid" id="uid" required>
                         <label for="password">Password: </label>

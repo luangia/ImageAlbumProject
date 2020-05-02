@@ -1,3 +1,7 @@
 {
-    "secret": "rnbczT4xQlJNz7h2gXLh"
+    "secret": "rnbczT4xQlJNz7h2gXLh",
+    "host": "ec2-18-217-134-54.us-east-2.compute.amazonaws.com",
+    "user": "lucas",
+    "password": "v%5w0J?ng?vA2M#i",
+    "database": "imageDB-lucas"
 }

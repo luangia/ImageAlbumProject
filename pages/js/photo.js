@@ -6,6 +6,7 @@ function loadImage() {
 
     // load the image information from the database
     $.get(url,(data)=>{
+        console.log(data);
         let html = '<div class="card border-success mt-3">\n' + 
                     '<h2 class="card-header">Recent Images </h2>\n' +
                     '<div class="card-body">\n';
@@ -22,7 +23,7 @@ function loadImage() {
         console.log("Full html: " + html);
 
         $('#imageArea').html(html);
-        console.log("Token: " + token);
+
     })
     .fail((jqXHR) => {
         alert("Image Query Failed: " + jqXHR.statusText);

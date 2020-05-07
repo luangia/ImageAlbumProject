@@ -18,7 +18,6 @@
 //               2. Authenticating a user
 
 const jwt = require("jwt-simple");
-
 const router = require("express").Router();
 const bcrypt = require("bcrypt-nodejs");
 const bodyParser = require("body-parser");
@@ -50,24 +49,29 @@ router.post('/user', function(req, res) {
         if(err) {
             if(DEBUG)
                 console.log("Error connecting to MySQL:", err);
-            res.status(500).json({error: "Server Error. Try again later."});
+            return res.status(500).json({error: "Server Error. Try again later."});
         } else {
             if(DEBUG)
                 console.log("Connection established.");
             conn.query("SELECT uid FROM user WHERE uid = ?", [req.body.uid],
             function(err, rows) {
+                console.log("ssadsda.");
                 if (err)
                     return res.status(500).json({error: "Server Error. Try again later."});
                 else {
+                    if(DEBUG)
+                        console.log("Connection ended");
+                    conn.end();
+
                     if (rows.length != 0) {
                         if (DEBUG)
                             console.log("Duplicate check - Duplicate user found: " + req.body.uid);
-                        res.status(409).send("ID's taken.");
+                         return res.status(409).send("ID's taken.");
                     }
 
                     else if (!isEmailValid(req.body.uid)) {
                         console.log(req.body.uid)
-                        res.status(409).send("Invalid ID.");
+                        return res.status(409).send("Invalid ID.");
                     } else {
                         if (DEBUG) {
                             console.log("-----USER CREATED----- ")
@@ -123,11 +127,11 @@ router.post('/user', function(req, res) {
                                         if (err) {
                                             if(DEBUG)
                                                 console.log("Error inserting data into database:", err);
-                                            res.status(500).json({error: "Server Error. Please Try again"});
+                                            return res.status(500).json({error: "Server Error. Please Try again"});
                                         } else {
                                             if(DEBUG)
                                                 console.log("Successfully created user.");
-                                            res.status(201).json({success: "User created."});
+                                            return res.status(201).json({success: "User created."});
                                         }
                                     });
                                     
@@ -140,7 +144,7 @@ router.post('/user', function(req, res) {
                 }
             })
         } 
-    })
+    });
 })
 
 // Add a new user to the database
@@ -265,38 +269,44 @@ router.post("/auth", function(req, res) {
         } else {
             if(DEBUG)
                 console.log("Connection established.");
-            conn.query("SELECT uid, password FROM user WHERE uid = ?", [req.body.uid], 
-            function(err, rows) {
+            conn.query("SELECT uid, password FROM user WHERE uid = ?", [req.body.uid]
+            , function(err, rows) {
                 if (DEBUG) 
                     console.log("Query results:", rows);
                 if (err) {
                     return res.status(500).json({error: "Server Error. Try again."});
                 } else {
+
+                    if(DEBUG)
+                        console.log("Connection ended");
+                    conn.end();
+
                     if (rows.length == 0) {
                         if(DEBUG)
                             console.log("User not in database");
-                        res.status(401).json({error: errMessage});
+                        return res.status(401).json({error: errMessage});
                     } else {
                         let user = rows[0];
-                    
+
                         bcrypt.compare(req.body.password, user.password, function (err, valid) {
                             if (err) {
                                 res.status(400).json({ error: err });
                             } else if (valid) {
                                 //Send back a token that contains the user's username
                                 var token = jwt.encode({ uid: user.uid }, secret);
-                                res.json({ token: token });
+                                return res.json({ token: token });
                             } else {
                                 if (DEBUG)
                                     console.log("Password: " + user.password + " incorrect.");
-                                res.status(401).json({ error: errMessage });
+                                return res.status(401).json({ error: errMessage });
                             }
                         });
                     }
                 }
             });
         }
-    })
+    });
+
 });
 
 

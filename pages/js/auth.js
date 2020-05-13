@@ -63,16 +63,80 @@ $(() => {
             if(jqXHR.status != 409) {
                 alert("Error: "+ jqXHR.status + "\n" + jqXHR.statusText);
             }
+        })
+        .done((data) => {
+            window.location.href = "http://localhost:3000";
+        })
+        ;
+
+
+    });
+
+    //Change Password
+    $('#changePassword').on("submit", (e) => {
+        e.preventDefault();
+        let token = window.localStorage.getItem("token");
+        let reqData = {password: $("#newPassword").val()};
+
+        $.ajax({
+            type: "POST",
+            url: "api/user/change",
+            data: reqData,
+            headers: {"X-Auth": token},
+            contentType: "application/x-www-form-urlencoded",
+            statusCode: {
+                200: (resObj, textStatus, jqXHR) => {
+                    alert("Successfully changed password.")
+                },
+                304: (resObj, textStatus, jqXHR) => {
+                    alert("New password is the same as the old password. Please try again.");
+                }    
+            }
+        })
+        .fail((jqXHR) => {
+            if(jqXHR.status != 409) {
+                alert("Error: "+ jqXHR.status + "\n" + jqXHR.statusText);
+            }
         });
 
 
     });
 
+    // Delete account
+    $("#deleteAccount").on("click", (e) => {
+        e.preventDefault();
+        let token = window.localStorage.getItem("token");
+
+        $.ajax({
+            type: "GET",
+            url: "api/user/delete?token=" + token,
+            dataType: "html",
+            statusCode: {
+                400: (resObj, textStatus, jqXHR) => {
+                    alert("Error deleting user.");
+                },
+                200: (resObj, textStatus, jqXHR) => {
+                    alert("Successfully deleted usesr.");
+                }
+            }
+        })
+        .fail((jqXHR) => {
+            if ((jqXHR.status != 401) || jqXHR.status != 404) {
+                alert("Server Error: Try again later.");
+            }
+        })
+        .done((data) => {
+            // Delete token and log out
+            window.localStorage.removeItem("token");
+            window.location.href = "http://localhost:3000";
+        })
+
+    })
+
     // get photos page
     $("#photoPage").on("click", (e) => {
         let pageNo = 1260;
         let token = window.localStorage.getItem("token");
-        console.log(token);
         $.ajax({
             type: "GET",
             headers: {"X-Auth": token},
@@ -93,6 +157,7 @@ $(() => {
             }
         })
         .done((data) => {
+            // Load image into page
             data = data.trim();
             console.log(data);
             $("#myPhotos").html(data);

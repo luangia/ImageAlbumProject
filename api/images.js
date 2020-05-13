@@ -81,15 +81,12 @@ router.post("/", upload.single("photo"), function (req, res) {
         console.log("Image belongs to user: " + decoded.uid);
 
     let usr = decoded.uid;
-    if (DEBUG)
-        console.log("Connection established.");
 
     // MySQL query to verify users
     conn.query("SELECT * from user WHERE uid = ?", [usr],
         function (err, rows) {
             if (err)
                 return res.status(400).json({ error: "Server Error. Try again later." });
-
 
             if (rows.length == 0) {
                 if (DEBUG)
@@ -229,9 +226,6 @@ router.get("/", function (req, res) {
 
                         return res.status(400).send(err);
                     }
-
-                    if (DEBUG)
-                        console.log("Connection ended");
 
                     return res.status(201).json(rows);
                 })

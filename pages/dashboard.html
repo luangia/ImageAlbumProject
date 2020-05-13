@@ -47,7 +47,12 @@
                     </ul>
     
                 </div>
+
+                <a href="#!" class="btn btn-danger float-left" id="deleteAccount">
+                    <span class="far fa-trash-alt mr-2"></span>Delete Account</a>
             </nav>
+
+        
         </div>
         
     </div>
@@ -75,6 +80,27 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-6 mx-auto" style="width: fit-content;">
+        <div class="card">
+          <div class="card-body ht-tm-superspecialcardcheat">
+  
+            <h6 class="card-title">Change Your Password</h6>
+  
+            <div class="ht-tm-codeblock ht-tm-btn-replaceable">
+              <form id="changePassword" class="form-inline ht-tm-element" action="api/user/change" method="post">
+                <label class="sr-only" for="inlineFormInputGroup">New Password</label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <input type="text" class="form-control" id="newPassword" placeholder="New Password">
+                </div>
+  
+                <button type="submit" class="btn btn-danger">Go</button>
+              </form>
+            </div>
+  
+          </div>
+        </div>
+      </div>
 
     <div class="container">
         <div id="myPhotos">

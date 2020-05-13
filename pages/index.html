@@ -9,31 +9,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
+    <link rel='stylesheet' type="text/css" href='css/bootstrap4-retro.css'>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="css\fontawesome-free-5.13.0-web\fontawesome-free-5.13.0-web\css\all.css" rel="stylesheet"> <!--load all styles -->
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
     <script type="text/javascript" src="js/login.js" defer></script>
     <script type="text/javascript" src="js/auth.js" defer></script>
 </head>
 
-<body>
+<body class="ht-body">
+    <div class="ht-tm-navbar bg-danger navbar-dark text-white">
+        <div class='container'>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#!">Image Project</a>
+    
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!">Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!">About</a>
+                        </li>
+
+                        <li class="nav-item my-2 my-lg-0">
+                            <a class="nav-link" href="#!">Contact Us</a>
+                        </li>
+                    </ul>
+    
+                </div>
+            </nav>
+        </div>
+        
+    </div>
+
+    <div class="jumbotron bg-secondary text-center text-danger mb-0 radius-0 ht-tm-jumbotron">
+        <div class="container">
+            <div class="ht-tm-header">
+                <h1 class="display-3 text-uppercase">Wayback Image</h1>
+                <span class="lead">Welcome to the Image Album Project</span>
+
+                <div class="mt-4">
+                    <a href="javascript:; " onclick="document.getElementById( 'login_form').style.display='block' "
+                        class="btn btn-danger btn-lg m-2 text-secondary js-ht-download-link" data-type="theme"
+                        data-id="97">
+                        <span class="fas fa-sign-in-alt"></span> Login
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    
 
     <div class="container">
-        <div class="card border-success mt-5">
-            <h1 class="card-header">Welcome to the Image Album Project</h1>
-
-            <a href='signup.html' style="text-align: left;">Don't have an account?</a>
-
+        <div class="mt-5">
             <!-- Button to open the modal login form -->
-            <a href="javascript:; " onclick="document.getElementById( 'login_form').style.display='block' ">Login</a>
             <div id="login_form" class="modal">
                 <!--Modal Content-->
                 <div class="loginbox">
                     <img src="images/avatar.png" class="avatar ">
                     <h1>Login Here</h1>
-                    <span onclick="document.getElementById( 'login_form').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <span onclick="document.getElementById( 'login_form').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
                     <form id="login_submit" action="api/auth" method="post">
                         <p>Username</p>
                         <input type="email" id="uid" name="uid" placeholder="Enter Username (Email)" required>

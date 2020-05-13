@@ -10,20 +10,19 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel='stylesheet' type="text/css" href='css/bootstrap4-retro.css'>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
     <script type="text/javascript" src="js/auth.js" defer></script>
-    <style>
-        body {
-            background: darkturquoise;
-        }
-    </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="card border-success mt-5">
-            <h1 class="card-header">Upload Image</h1>
+    <div class="col-xl-6 d-flex justify-content-center">
+        <div class='card d-flex justify-content-center shadow'>
+            <div class="card-header display-4">
+                <h3>Upload An Image</h3>
+            </div>
             <div class="card-body">
                 <div class="form-group">
                     <form id="uploadPhoto" action="/api/images" method="post" enctype="multipart/form-data">
@@ -33,20 +32,21 @@
                         <label for="subject">Photo Album: </label>
                         <input class="form-control" type="text" name="album" id="album" required>
                         <label for="description" ">Description: </label>
-                    <input class="form-control " type="text " name="description" id="description" required>
-                    <h2>Photo Parameters: </h2>
-                    <label for="fstop "">F-stop: </label>
-                        <input class="form-control col-sm-3 my-1" type="text" name="fstop" id="fstop">
-                        <label for="sspeed" ">S-speed: </label>
-                    <input class="form-control col-sm-3 " type="text " name="sspeed" id="sspeed">
-                    <label for="iso "">ISO: </label>
-                        <input class="form-control col-sm-3" type="text" name="iso" id="iso">
-                        <label for="focalLength" ">Focal Length: </label>
-                    <input class="form-control col-sm-3 " type="text " name="focalLength" id="focalLength">
-                    <label for="cameraType "">Camera Type: </label>
-                        <input class="form-control col-sm-3" type="text" name="cameraType" id="cameraType">
+                        <input class=" form-control" type="text" name="description" id="description" required>
 
-                        <input class="btn mt-3" type="submit" value="upload">
+                            <br>
+                            <h5>Photo Parameters: </h5>
+                            <input class="form-control col-sm-5 my-1" type="text" name="fstop" id="fstop"
+                                placeholder="F-stop">
+                            <input class="form-control col-sm-5" type="text" name=" sspeed" id="sspeed"
+                                placeholder="S-speed">
+                            <input class=" form-control col-sm-5" type="text" name="iso" id="iso" placeholder="ISO">
+                            <input class="form-control col-sm-5" type="text" name="focalLength" id="focalLength"
+                                placeholder="Focal Length">
+                            <input class="form-control col-sm-5" type="text" name="cameraType" id="cameraType"
+                                placeholder="Camera Type">
+                            <br>
+                            <input class="btn btn-primary btn-danger" type="submit" value="upload">
                     </form>
                 </div>
             </div>

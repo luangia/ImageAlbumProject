@@ -35,16 +35,16 @@ $(() => {
     //handle logout
     $("#logout").on("click", (e) => {
         window.localStorage.removeItem("token");
-        window.location.href = "../index.html";
+        window.location.href = "http://localhost:3000";
     });
 
     //handle signup
     $('#signupForm').on("submit", (e) => {
         e.preventDefault();
 
-        let reqData = {uid: $("#uid").val(),
-                       password: $("#password").val(),
-                       full_name: $("#fullname").val()};
+        let reqData = {uid: $("#signup_uid").val(),
+                       password: $("#signup_password").val(),
+                       full_name: $("#signup_fullname").val()};
         $.ajax({
             type: "POST",
             url: "api/user",
